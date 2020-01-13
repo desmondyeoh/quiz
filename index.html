@@ -112,13 +112,13 @@
     let TEXT = "";
 
     $(document).ready(function() {
-
+        
         // MENU SCREEN
         $('#menuScreen > button').click(function() {
             let path = 'data/'
             let filename = $(this).data('filename');
 
-            fetch(window.location.href+path+filename)
+            fetch(window.location.href+path+filename, {cache: "no-store"})
                 .then(response => response.text())
                 .then(data => {
                     TEXT = data;
