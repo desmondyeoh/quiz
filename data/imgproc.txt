@@ -1,0 +1,420 @@
+What is the use of aperture? (2)
+
+- Reduce blurring
+- Block off most rays
+
+
+Pin hole has o and f. What is f and what is o? (2)
+
+- f: focal length
+- o: pinhole, centre of camera
+
+
+What is lost and preserved in 3D -> 2D? (3)
+
+- lost: length, angles
+- preserved: straight lines
+
+
+What is vanishing point? (1)
+
+- point where parallel lines intersect in image
+
+
+Compare the 4 color models (9)
+
+- RGB: Drawbacks(2): Strongly correlated channel, non-perceptual
+- HSV: Intuitive
+- YCbCr: Fast compute, compression, TV
+- L*a*b: perceptually uniform
+
+
+Luminance vs Chrominance? (2)
+
+- Luminance > Chrominance
+- More sensitive to intensity than color
+
+
+Why can we see visible light? (1)
+
+- It's where sun radiates EM energy
+
+
+What does Mean, Variance and Area stands for? (3)
+
+- Mean: Hue
+- Variance: Saturation (inv.)
+- Area: Brightness
+
+
+Why Image filtering? (2 keywords)
+
+- remove unwanted variation
+- keep relevant information
+
+
+Definition of Image filtering? (1)
+
+- Compute fx of local neighborhood at each position
+
+
+Importance of Image Filtering? (Describe 3 Uses)
+
+- Enhance: Denoise, resize
+- Extact info: Texture, Edge
+- Detect pattern: Template matching
+
+
+Discuss Box Filter (matrix, use) (3)
+
+- 1/9 [1 * 9]
+- get average
+- smoothing
+
+
+Impulse filter? (mat, use)
+
+- 1 at middle
+- no chg
+
+
+Shift filter? (mat, use)
+
+- 1 at right mid
+- shift left 2px
+
+
+Sharpen filter? (mat, use)
+
+- 2mid - box
+- accentuates difference with local average
+
+
+Sobel filter? (mat, use)
+
+- 121 000 -(121)
+- edge detection
+
+
+Linear filter properties (3)
+
+- Linearity f(a+b) = f(a) + f(b)
+- Shift invariance f(g(x)) = g(f(x))
+- can repr as conv.
+
+
+Discuss Gaussian filter (aka, use, cmp, conv 2x)
+
+- Low-pass filter
+- remove "high f" comp.
+- conv 2 times sig = conv 1 time sig * sqrt(2)
+
+
+Laplacian (formula)
+
+- Unit Impulse - Gaussian
+
+
+Build 3x3 filter where +ve only if avr of 4 adj. < center
+
+0 -.25 0
+-.25 1 -.25
+0 -.25 0
+
+
+Write gradient eqn in x-direction (1)
+
+gradx(y,x) = im(y,x+1) - im(y,x) for each x,y
+
+
+Spatial vs Frequency (definition, chg x2)
+
+S: For each location in img, what is the value of light intensity at that location
+F: For each frequency component in img, what is its power or amplitude?
+-
+S: chg in px pos -> chg in scene
+F: chg in img pos -> chg in spatial f.
+-
+S: dist in l = real distance
+F: rate: image intensity chg in spatial domain img
+
+
+What does Fourier says? (1)
+
+- Any periodic fx can be written as weighted sum of sins and cosines of diff. frequencies
+
+
+Describe Shanon's Sampling Theorem. (3)
+
+- If fx is sampled at rate >= twice its highest frequence, f can be completely recovered from its samples
+- known as Nyquist Frequency limit
+- Sampling rate: pixels / unit distance
+
+
+How does aliasing happen? (2)
+- When undersampled
+- When high f. signal masquerades at lower f. signal.
+
+
+Morphing vs Warping? (3)
+
+M: source obj, target obj, warp + cross-dissolve
+W: source obj, no target, ..
+
+
+Filtering vs Warping? (1)
+
+F: Change Range
+W: Change Domain
+
+
+What are the 6 examples of parametric warps? (6)
+
+- CATRAP
+- cylindrical
+- affine
+- translation
+- rotation
+- aspect
+- perspective
+
+
+Why is T global? (2)
+
+- it's same for any point p
+- can be described w/ few numbers
+
+
+Linear vs Affine vs Projective (7)
+
+Eg: MRSS (Mirror,Rotate,Scale,Shear); +translation; +projective warps
+l->l: 111
+closed: 111
+o->o: 100
+prll: 110
+ratio: 110
+c.bias: 011
+
+
+K-Means operations? (6)
+
+- E: Fix u, min J w.r.t r
+- E: Each data -> nearest prototype
+- M: Fix r, min J w.r.t u
+- M: u_k = sum(r_ik x_i) / sum(r_ik)
+- M: Prototype = mean (point in cluster)
+- find local minima, run few times
+
+
+K-Means limitations? (5x2)
+
+- hard assignments (small shift -> diff cluster) (GMM)
+- Assume spherical cluster, eq. Pr. (GMM)
+- If ++k, clusters arbitrary, not nested (Hierarchy)
+- Sensitive to outliers (LossFx)
+- Poor on non-convex cluster (Spectral)
+
+
+Assumptions of Optical Flow? (2x2)
+
+- Brightness constant
+-> H(x,y) = I(x+u, y+v)
+- Motion is small
+-> I(x+u, y+v) = I(x,y) + dI/dx u + dI/dy v + HOT
+
+
+The 2 problems in Brightness Constancy Eqn (2)
+
+- 1. 1 Eqn 2 Unk
+- Ix u + Iy v = - It
+- 2. Aperture Problem
+- For points on a line with fixed intensity, we can only recover normal flow
+- need additional constraints
+
+
+Potential errors of Lucas Kanade? (3)
+
+- Brightness x constant
+- Motion x small
+- Point x move like neighbor (window too big)
+
+
+Steps of Iterative Lucas Kanade? (3)
+
+1. est v at each px. using LK eqn
+2. Warp H towards I using est. flow field (image warping)
+3. Repeat to converge
+
+
+Problem of template matching?
+
+- O(mnpq)
+
+
+What is decimation? (2)
+
+- Subsample from every other row / col
+- Dec. image size by 4
+
+
+How to prevent aliasing during decimation? (2)
+
+- Convolve with low pass filter
+- kill off high f. signal components
+
+
+What is expansion? (2)
+
+- Increasing image size by + row/col
+- Inc by 4x
+
+
+How to fill in empty pixels during expansion? (1 + 3 eg)
+- Interpolate to fill in:
+- Nearest Neighbor
+- Bilinear
+- Bicubic
+
+
+Bilinear expansion matrix ? (1)
+
+[1 2 1 2 4 2 1 2 1] / 4
+
+
+What is a pyramid? (4)
+
+- multi resolution representation of an image
+- separate info into f. bands
+- high f -> fine sampled grid
+- coarse info -> coarser grid
+
+
+What is binary image analysis? (1)
+
+Set of operation to produce binary image (1-fore, 2-back)
+
+
+Describe Otsu's method. (3)
+
+- Assumption: Histogram is bimodal
+- Find t that minimizes weighted-sum of within-group variant
+- Gray lv strongly dependent on location in image, local / dynamic t can also be used
+
+
+What are the 4 operations on Morphology? (8)
+
+- Dilation: expands 1s, fill holes
+- Erosion: shrink 1s, rm bridge, protrusions
+- Closing: roll outer
+- Opening: roll inner
+
+
+Formula for the 3 distances in binary image? (3x2)
+
+- Euclidean: ((x1-x2)^2 + (y1-y2)^2)^0.5
+- City-block: |x1-x2| + |y1-y2|
+- Chessboard: max { |x1-x2|, |y1-y2| }
+
+
+What are the 3 methods for CCA? (3x2)
+
+- Recursive (almost never used)
+- Parallel (Needs parallel hardware)
+- Row-by-row (most common)
+
+
+Recursive CCA Operations? (4)
+
+- Negate 1 -> -1
+- Find -1 pixel -> new label
+    -> procedure search: find neighbors -1
+    -> recursive repeat for neighbors
+
+
+Row-by-row CCA Operations? (4)
+
+- 1: Propagate px labels to neighbor
+    -> 2 diff labels -> same px
+    -> labels -> equal class
+- 2: translation: assign pixel labels -> class
+
+
+What is interest point? (2)
+
+- Point in img with well-defined position, can be robustly detected
+
+
+List 5 Good features of Interest Points (9)
+
+- LACRE
+- Local: robust to occlusion and clutter
+- Accurate: precise localization
+- Covariant
+- Robust: noise, blur, compression
+- Efficient: close to real-time
+
+
+What is Aw in Harris Corner Detector? (desc, formulax2)
+
+- 2x2 auto-correlation matrix
+- Aw = sum x, y W(x,y) * [fx^2 fxfy fxfy fy^2]
+- W(x,y) = Smoothing fx (gaussian)
+
+
+Harris Corner Detector, lambda values and cases? (4)
+
+- l2 = horizontal
+- l2 >> l1 = H. edge
+- l1 >> l2 = V. edge
+- l2 ~ l1 = Corner
+- l2 ~ l1 ~ small = Flat
+
+
+Pros and Cons of Harris Corner Detector? (1+3)
+
+- P: Rotation invariant
+- C: Sensitive to {scale, sig. viewpoint, contrast} chg
+
+
+How does Automatic Scale Selection works? (2)
+
+- Design function F(x, sig_n) which provides local measure
+- Select points which F(x, sig_n) is maximal over sig_n
+
+
+Motivation of CNN? (4)
+
+- Local connectivity
+    -> receptive field of neural or filter size
+    -> connections local in space (w & h) but always in full depth
+    -> a set of learnable filters
+- Param sharing, weights tied
+- Equivariant representation
+- Translation invariant
+
+
+Describe the CNN Operation (6)
+
+- Convolution is commutative because kernel is flipped
+- Conv. can be defined for any D. But standard only has spatial, no temporal
+- 3D RGB also 2D conv for every channel
+- Each channel has different kernel, conv. per channel is summed up to produce scalar for non-linearity
+- Filter is not normalized, so no need have different linear combination coefficients
+- 1*1 conv. is dot product in diff. channels, linear comb. of different channels
+
+
+Discuss Pooling layer (5)
+
+- decrease spatial size
+- decrease # of params
+- avoid overfitting
+- back prop (max): route gradient to input that had highest value in fwd pass
+- unclear if essential
+
+
+Discuss Batch Norm (4)
+
+- Conv -> BN -> Non-linear
+- Batch because it's a subset
+- Instead of 0-1 (zero mean unit variance) input, distribution will be learnt, even undone if necessary
+- Data normalization or PCA/whitening is common in general NN, but in CNN, normalization layer has been shown to be minimal in some nets as well
