@@ -60,7 +60,7 @@
             <button class="subject" data-filename="aigame.txt">AI Game</button>
             <button class="subject" data-filename="imgproc.txt">Img Proc</button>
         </div>
-        <div id="playScreen">
+        <div id="playScreen" style="display:none;">
             <div id="pct">[%]</div>
             <div id="question">[Question]</div>
             <div id="answer">[Answer]</div>
@@ -112,7 +112,6 @@
     let TEXT = "";
 
     $(document).ready(function() {
-        $('#playScreen').hide();
 
         // MENU SCREEN
         $('#menuScreen > button').click(function() {
