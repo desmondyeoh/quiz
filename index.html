@@ -116,10 +116,10 @@
 
         // MENU SCREEN
         $('#menuScreen > button').click(function() {
-            let path = '/data/'
+            let path = 'data/'
             let filename = $(this).data('filename');
 
-            fetch(path+filename)
+            fetch(window.location.href+path+filename)
                 .then(response => response.text())
                 .then(data => {
                     TEXT = data;
@@ -137,11 +137,10 @@
         });
 
         // PLAY SCREEN
-
         $('#nextBtn').click(function() {
             console.log('clicked!')
             nextQuestion();
-        })
+        });
 
         $('#question').click(function() {
             $('#answer').toggle();
