@@ -152,6 +152,7 @@ Describe Shanon's Sampling Theorem. (3)
 
 
 How does aliasing happen? (2)
+
  When undersampled
  When high f. signal masquerades at lower f. signal.
 
