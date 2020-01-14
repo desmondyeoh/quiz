@@ -103,7 +103,7 @@ Linear filter properties (3)
  can repr as conv.
 
 
-Discuss Gaussian filter (aka, use, cmp, conv 2x)
+Discuss Gaussian filter (aka, use, conv 2x)
 
  Low-pass filter
  remove "high f" comp.
@@ -271,6 +271,7 @@ What is expansion? (2)
 
 
 How to fill in empty pixels during expansion? (1 + 3 eg)
+
  Interpolate to fill in:
  Nearest Neighbor
  Bilinear
