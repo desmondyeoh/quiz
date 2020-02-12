@@ -4,7 +4,7 @@ Demo: [http://dyeoh.com/quiz](http://dyeoh.com/quiz)
 Tap on the question to reveal the answer
 
 ## How to use?
-1. Put questions and answers in a `SUBJECT_NAME.txt` file. 
+1. Put questions and answers in a `SUBJECT_NAME.txt` file.  
 Note that:
 * There should be 1 line between the question and the answer. 
 * There should be 2 lines between the question-and-answer pairs.
