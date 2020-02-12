@@ -1,5 +1,7 @@
-# Quizzer App (desmondyeoh/quiz)
+# Quiz App (desmondyeoh/quiz)
 This is a minimalistic quiz application that reads from text files.
+Demo: [http://dyeoh.com/quiz](http://dyeoh.com/quiz)
+- Tap on the question to reveal the answer
 
 ## How to use?
 1. Put questions and answers in a `SUBJECT_NAME.txt` file. 
